@@ -17,7 +17,7 @@ def get_projects_with_dependencies(graph):
    return projects_with_depen
  
 dependents = get_projects_with_dependencies(graph)
-# print(dependents)
+print(dependents)
  
 def get_projects_wo_dependencies(projects_with, graph):
    projects_wo_dependencies = set()
@@ -26,16 +26,16 @@ def get_projects_wo_dependencies(projects_with, graph):
            projects_wo_dependencies.add(project)
    return projects_wo_dependencies
 notDependents = get_projects_wo_dependencies(dependents, graph)
-# print(notDependents)
+print(notDependents)
  
 def find_build_order(projects, dependencies):
    build_order = []
    project_graph = create_graph(projects, dependencies)
    while project_graph:
-       print(project_graph)
+       print("project_graph",project_graph)
        projects_with_depen = get_projects_with_dependencies(project_graph)
        projects_wo_depen = get_projects_wo_dependencies(projects_with_depen, project_graph)
-       print(projects_wo_depen)
+       print("projects_wo_depen",projects_wo_depen)
        if len(projects_wo_depen) == 0 and project_graph:
            raise ValueError('There is a cycle in the build order')
        for independent_project in projects_wo_depen:
